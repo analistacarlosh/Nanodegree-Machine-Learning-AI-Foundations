@@ -154,3 +154,77 @@ elements = {"hydrogen": {"number": 1,
 
 ## Control flow lesson
 
+### If Statement
+
+``` if phone_balance < 5:
+    phone_balance += 10
+    bank_balance -= 10
+```
+
+### If, Elif, Else
+
+``` if season == 'spring':
+    print('plant the garden!')
+elif season == 'summer':
+    print('water the garden!')
+elif season == 'fall':
+    print('harvest the garden!')
+elif season == 'winter':
+    print('stay indoors!')
+else:
+    print('unrecognized season')
+```
+
+### Indentation
+
+**Spaces or Tabs?**
+The Python Style Guide recommends using 4 spaces to indent, rather than using a tab. Whichever you use, be aware that "Python 3 disallows mixing the use of tabs and spaces for indentation."
+
+## For Loops
+Python has two kinds of loops - for loops and while loops. A for loop is used to "iterate", or do something repeatedly, over an iterable.
+
+An iterable is an object that can return one of its elements at a time. This can include sequence types, such as strings, lists, and tuples, as well as non-sequence types, such as dictionaries and files.
+
+**Example**
+Let's break down the components of a for loop, using this example with the list cities:
+
+```
+names = ["Joey Tribbiani", "Monica Geller", "Chandler Bing", "Phoebe Buffay"]
+usernames = []
+
+# write your for loop here
+for name in names:
+    usernames.append(name.lower().replace(" ", "_"))
+    
+print(usernames)
+```
+
+**for and rand()**
+```
+usernames = ["Joey Tribbiani", "Monica Geller", "Chandler Bing", "Phoebe Buffay"]
+
+for i in range(len(usernames)):
+    usernames[i] = usernames[i].lower().replace(" ", "_")
+
+print(usernames)
+```
+
+**Iterating Through Dictionaries with For Loops**
+
+```
+for key, value in cast.items():
+    print("Actor: {}    Role: {}".format(key, value))
+```
+
+**While Loops**
+```
+card_deck = [4, 11, 8, 5, 13, 2, 8, 10]
+hand = []
+
+# adds the last element of the card_deck list to the hand list
+# until the values in hand add up to 17 or more
+while sum(hand)  < 17:
+    hand.append(card_deck.pop())
+```
+
+
