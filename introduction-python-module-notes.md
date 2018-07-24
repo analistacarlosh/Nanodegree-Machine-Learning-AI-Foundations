@@ -180,7 +180,7 @@ else:
 **Spaces or Tabs?**
 The Python Style Guide recommends using 4 spaces to indent, rather than using a tab. Whichever you use, be aware that "Python 3 disallows mixing the use of tabs and spaces for indentation."
 
-## For Loops
+### For Loops
 Python has two kinds of loops - for loops and while loops. A for loop is used to "iterate", or do something repeatedly, over an iterable.
 
 An iterable is an object that can return one of its elements at a time. This can include sequence types, such as strings, lists, and tuples, as well as non-sequence types, such as dictionaries and files.
@@ -224,7 +224,85 @@ hand = []
 # adds the last element of the card_deck list to the hand list
 # until the values in hand add up to 17 or more
 while sum(hand)  < 17:
-    hand.append(card_deck.pop())
+    hand.append(card_deck.pop())Bom d
 ```
 
+## Functions lesson
 
+**Defining Functions**
+Example of a function definition:
+```
+def cylinder_volume(height, radius):
+    pi = 3.14159
+    return height * pi * radius ** 2
+```
+
+**Default Arguments**
+```
+def cylinder_volume(height, radius=5):
+    pi = 3.14159
+    return height * pi * radius ** 2
+```
+
+**Quiz: readable_timedelta**
+```
+def readable_timedelta(days):
+    week = days // 7
+    days = days % 7
+    return "{} week(s) and {} days(s).".format(week,days)
+
+print(readable_timedelta(6))
+```
+
+### Docstrings
+
+```
+def population_density(population, land_area):
+    """Calculate the population density of an area.
+
+    Parameters:
+    population: int. The population of that area
+    land_area: int or float. This function is unit-agnostic, if you pass in values in terms
+    of square km or square miles the function will return a density in those units.
+
+    Returns: 
+    population_density: population / land_area. The population density of a particular area.
+    """
+    return population / land_area
+```
+
+### Lambda Expressions
+You can use lambda expressions to create anonymous functions. That is, functions that don’t have a name.
+
+**With a lambda expression, this function:**
+```
+def multiply(x, y):
+    return x * y
+```
+**can be reduced to:**
+`multiply = lambda x, y: x * y`
+
+**Both of these functions are used in the same way. In either case, we can call multiply like this:**
+`multiply(4, 7)`
+
+**Lambda with Map**
+```
+numbers = [
+              [34, 63, 88, 71, 29],
+              [90, 78, 51, 27, 45],
+              [63, 37, 85, 46, 22],
+              [51, 22, 34, 11, 18]
+           ]
+
+averages = list(map(lambda x: sum(x) / len(x), numbers))
+print(averages)
+```
+
+**Lambda with Filter**
+```
+cities = ["New York City", "Los Angeles", "Chicago", "Mountain View", "Denver", "Boston"]
+
+short_cities = list(filter(lambda x: len(x) < 10, cities))
+print(short_cities)
+```
+## 
