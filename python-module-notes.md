@@ -305,4 +305,265 @@ cities = ["New York City", "Los Angeles", "Chicago", "Mountain View", "Denver", 
 short_cities = list(filter(lambda x: len(x) < 10, cities))
 print(short_cities)
 ```
-## 
+## Scripts lesson
+
+**Install Python Using Anaconda**
+
+**Scripting With Raw Input**
+
+**input function**
+```
+name = input("Enter your name: ")
+print("Hello there, {}!".format(name.title()))
+```
+
+```
+num = int(input("Enter an integer"))
+print("hello" * num)
+```
+
+**eval function**
+```
+result = eval(input("Enter an expression: "))
+print(result)
+```
+
+**Generate Messages**
+```
+names = input("Enter names separated by commas: ").title().split(",")
+assignments = input("Enter assignment counts separated by commas: ").split(",")
+grades = input("Enter grades separated by commas: ").split(",")
+
+message = "Hi {},\n\nThis is a reminder that you have {} assignments left to \
+submit before you can graduate. You're current grade is {} and can increase \
+to {} if you submit all assignments before the due date.\n\n"
+
+for name, assignment, grade in zip(names, assignments, grades):
+    print(message.format(name, assignment, grade, int(grade) + int(assignment)*2))
+```
+
+### Try Statement
+We can use try statements to handle exceptions.
+
+```
+try:
+    # some code
+except ValueError:
+    # some code
+```
+
+```
+try:
+    # some code
+except ValueError, KeyboardInterrupt:
+    # some code
+```
+
+```
+try:
+    # some code
+except Exception as e:
+   # some code
+   print("Exception occurred: {}".format(e))
+```
+
+### Reading a File
+```
+f = open('my_path/my_file.txt', 'r')
+file_data = f.read()
+f.close()
+```
+
+### Writing to a File
+```
+f = open('my_path/my_file.txt', 'w')
+f.write("Hello there!")
+f.close()
+```
+
+### With
+Python provides a special syntax that auto-closes a file for you once you're finished using it.
+
+```
+with open('my_path/my_file.txt', 'r') as f:
+    file_data = f.read()
+```
+
+```
+def create_cast_list(filename):
+    cast_list = []
+    #use with to open the file filename
+    #use the for loop syntax to process each line
+    #and add the actor name to cast_list
+
+    return cast_list
+
+cast_list = create_cast_list('flying_circus_cast.txt')
+for actor in cast_list:
+    print(actor)
+```
+
+### Importing Local Scripts
+
+`import useful_functions`
+
+```
+import useful_functions as uf
+uf.add_five([1, 2, 3, 4])
+```
+
+### Using a main block
+
+```
+# demo.py
+
+import useful_functions as uf
+
+scores = [88, 92, 79, 93, 85]
+
+mean = uf.mean(scores)
+curved = uf.add_five(scores)
+
+mean_c = uf.mean(curved)
+
+print("Scores:", scores)
+print("Original Mean:", mean, " New Mean:", mean_c)
+
+print(__name__)
+print(uf.__name__)
+```
+
+```
+# useful_functions.py
+
+def mean(num_list):
+    return sum(num_list) / len(num_list)
+
+def add_five(num_list):
+    return [n + 5 for n in num_list]
+
+def main():
+    print("Testing mean function")
+    n_list = [34, 44, 23, 46, 12, 24]
+    correct_mean = 30.5
+    assert(mean(n_list) == correct_mean)
+
+    print("Testing add_five function")
+    correct_list = [39, 49, 28, 51, 17, 29]
+    assert(add_five(n_list) == correct_list)
+
+    print("All tests passed!")
+
+if __name__ == '__main__':
+    main()
+```
+
+### The Python Standard Library
+https://docs.python.org/3/library/
+
+### Quiz: Password Generator
+Write a function called generate_password that selects three random words from the list of words word_list and concatenates them into a single string. Your function should not accept any arguments and should reference the global variable word_list to build the password.
+
+```
+# Use an import statement at the top
+import random
+
+word_file = "words.txt"
+word_list = []
+
+#fill up the word_list
+with open(word_file,'r') as words:
+	for line in words:
+		# remove white space and make everything lowercase
+		word = line.strip().lower()
+		# don't include words that are too long or too short
+		if 3 < len(word) < 8:
+			word_list.append(word)
+
+# Add your function generate_password here
+# It should return a string consisting of three random words 
+# concatenated together without spaces
+def generate_password():
+    randomWord = ""
+    for i in range(3):
+        randomWord += random.choice(word_list)
+    return randomWord
+
+# test your function
+print(generate_password())
+```
+
+**Which Module?**
+**Which module can tell you the current time and date?**
+`8.1. datetime — Basic date and time types`
+
+**Which module has a method for changing the current working directory?**
+`11.2. os.path`
+
+**Which module can read data from a comma separated values (.csv) file into Python dictionaries for each row?**
+`14.1. csv — CSV File Reading and Writing`
+
+**Which module can help extract all of the files from a zip file?**
+`13.5. zipfile`
+
+**Which module can say how long your code took to run?**
+`30. Python Runtime Services`
+https://docs.python.org/3/library/timeit.html
+https://docs.python.org/3/library/profile.html
+
+
+### Techniques for Importing Modules
+
+To import multiple individual objects from a module:
+`from module_name import first_object, second_object`
+
+To import an object from a module and rename it:
+`from module_name import object_name as new_name`
+
+Import all submodules from module
+`import module_name`
+
+**Modules, Packages, and Names**
+`import package_name.submodule_name`
+
+### Third-Party Libraries
+Package manager is pip
+`pip install package_name`
+
+**Using a requirements.txt File**
+
+```
+beautifulsoup4==4.5.1
+bs4==0.0.1
+pytz==2016.7
+requests==2.11.1
+```
+
+You can use pip to install all of a project's dependencies at once by typing `pip install -r requirements.txt` in your command line.
+
+**Useful Third-Party Packages**
+
+* IPython - A better interactive Python interpreter
+* requests - Provides easy to use methods to make web requests. Useful for accessing web APIs.
+* Flask - a lightweight framework for making web applications and APIs.
+* Django - A more featureful framework for making web applications. Django is particularly good for designing complex, content heavy, web applications.
+* Beautiful Soup - Used to parse HTML and extract information from it. Great for web scraping.
+* pytest - extends Python's builtin assertions and unittest module.
+* PyYAML - For reading and writing YAML files.
+* NumPy - The fundamental package for scientific computing with Python. It contains among other things a powerful N-dimensional array object and useful linear algebra capabilities.
+* pandas - A library containing high-performance, data structures and data analysis tools. In particular, pandas provides dataframes!
+* matplotlib - a 2D plotting library which produces publication quality figures in a variety of hardcopy formats and interactive environments.
+* ggplot - Another 2D plotting library, based on R's ggplot2 library.
+* Pillow - The Python Imaging Library adds image processing capabilities to your Python interpreter.
+* pyglet - A cross-platform application framework intended for game development.
+* Pygame - A set of Python modules designed for writing games.
+* pytz - World Timezone Definitions for Python
+
+
+Python reference study:
+
+* https://docs.python.org/3/index.html
+
+The websites and blogs of prominent experts
+* https://doughellmann.com/blog/ 
+* https://eli.thegreenplace.net/
